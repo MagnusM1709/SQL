@@ -74,11 +74,12 @@ FROM SPIELER
 WHERE Spiele > 10 AND Vorlagen > 3;
 
 o)
-SELECT Sinnvoll:AVG(*)
+SELECT AVG(*) as Sinnvoll
 FROM Spiel
 WHERE Spiele < 6;
 
 p)
 Berechne das Vorlagen/Tore verhältnis für jeden Spieler
 
-Select 
+Select (Vorlagen/Tore) AS Verhaeltnis
+From Spieler;
