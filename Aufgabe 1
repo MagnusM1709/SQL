@@ -64,13 +64,21 @@ l)
 
 
 m)
-SELECT COUNT(*)
-FROM 
+SELECT Anzahl:COUNT(*)
+FROM SPIELER
+WHERE Trokot_Nr = 12;
 
 n)
-
+SELECT AVG(*)
+FROM SPIELER
+WHERE Spiele > 10 AND Vorlagen > 3;
 
 o)
-
+SELECT Sinnvoll:AVG(*)
+FROM Spiel
+WHERE Spiele < 6;
 
 p)
+Berechne das Vorlagen/Tore verhältnis für jeden Spieler
+
+Select 
