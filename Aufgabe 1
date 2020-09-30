@@ -1,0 +1,76 @@
+a)
+SELECT *
+FROM  Verein;
+
+b)
+SELECT Verband
+FROM LIGA
+WHERE Lig_Nr = "1";
+
+c)
+SELECT Datum
+FROM Spiel
+ORDER BY Datum DESC;
+
+d)
+SELECT Liga_Nr, Verband, Rekordspieler
+FROM Liga;
+
+e)
+SELECT Spieler_Name, Tore
+FROM Spieler
+WHERE Tore > 5;
+ORDER BY Tore DESC;
+
+f)
+SELECT Spieler_Name, Tore
+FROM Spieler
+WHERE Tore > 5 AND Tore < 10;
+ORDER BY Tore DESC;
+
+g)
+SELECT Name
+FROM Verein
+WHERE NAME LIKE "*FC*";
+
+h)
+SELECT Spieler_Name
+FROM Spieler
+WHERE Spiele = 0 AND Land = "D";
+
+i)
+SELECT Spieler_Name
+FROM Spieler
+WHERE Vereins_ID = 
+	(
+		SELECT V_ID
+		FROM Verein
+		WHERE Liga_Nr = 2
+	);
+
+j)
+SELECT Spieler_Name
+FROM Spieler
+WHERE Land = "B" OR Land = "J" OR Land = "P"
+ORDER BY Land ASC;
+
+k)
+SELECT Datum
+FROM Spiel
+WHERE Spieltag = 1
+ORDER BY Datum DESC;
+
+l)
+
+
+m)
+SELECT COUNT(*)
+FROM 
+
+n)
+
+
+o)
+
+
+p)
