@@ -26,6 +26,13 @@ SELECT Spieler_Name, Trikot_Nr, Land, Tore
 FROM Spieler
 WHERE Vereins_Id = (SELECT V_ID FROM Verein WHERE Name = "FC Bayern München");
 
+oder
+ 
+SELECT Spieler_Name, Trikot_Nr, Land, Tore
+FROM Spieler LEFT JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
+WHERE Name = "FC Bayern München"
+ORDER BY Trikot_Nr;
+
 e)
 SELECT Verein.Name, COUNT(Vereins_ID)
 FROM Verein INNER JOIN Spieler ON Verein.V_ID = Spieler.Vereins_ID
