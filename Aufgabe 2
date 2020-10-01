@@ -5,8 +5,8 @@ WHERE Meister = V_Id AND Liga_Nr = 1;
 
 b)
 SELECT Sum(Tore_Heim+Tore_Gast) AS Tore
-FROM Spiel, Verein, Liga
-WHERE Spiel.[Heim]=[V_id]
+FROM Liga, Spiel, Verein
+WHERE Spiel.[Heim]=[V_id] AND Liga_Nr = 1
 GROUP BY Liga.Liga_nr;
 
 
@@ -15,9 +15,9 @@ SELECT Name
 FROM Verein
 WHERE V_Id = (
 
-SELECT Gast
-FROM Spiel
-WHERE Spieltag = 1 AND Heim =(SELECT V_Id FROM Verein WHERE Name = "Dynamo Dresden")
+  SELECT Gast
+  FROM Spiel
+  WHERE Spieltag = 1 AND Heim =(SELECT V_Id FROM Verein WHERE Name = "Dynamo Dresden")
 
 );
 
@@ -25,3 +25,12 @@ d)
 SELECT Spieler_Name, Trikot_Nr, Land, Tore
 FROM Spieler
 WHERE Vereins_Id = (SELECT V_ID FROM Verein WHERE Name = "FC Bayern München");
+
+e)
+SELECT Verein.Name, COUNT(Vereins_ID)
+FROM Verein INNER JOIN Spieler ON Verein.V_ID = Spieler.Vereins_ID
+WHERE Liga_Nr = 1
+GROUP BY Verein.Name
+ORDER BY COUNT(Vereins_ID) DESC;
+
+f)
