@@ -41,3 +41,11 @@ GROUP BY Verein.Name
 ORDER BY COUNT(Vereins_ID) DESC;
 
 f)
+SELECT Darum, Spieltag
+FROM Spiel LEFT JOIN Verein ON Spiel.Heim = Verein.V_Id
+WHERE Verein.Liga = 1
+GROUP BY Datum
+
+g)
+SELECT Spieler_Name, Spiele, Tore, Vorlagen, Name
+FROM Spieler LEFT JOIN Verein ON Vereins_ID
