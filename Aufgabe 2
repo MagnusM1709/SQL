@@ -48,4 +48,20 @@ GROUP BY Datum
 
 g)
 SELECT Spieler_Name, Spiele, Tore, Vorlagen, Name
-FROM Spieler LEFT JOIN Verein ON Vereins_ID
+FROM Spieler LEFT JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
+WHERE Land = "Brasilien" AND Liga = 1
+
+h)
+SELECT Tore, Trikot_Nr, Name
+FROM Spieler LEFT JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
+WHERE Tore > 5 AND Liga = 2
+ORDER BY Tore
+
+i)
+SELECT Name
+FROM Verein LEFT JOIN Spiel ON Verein.V_ID = Spiel.Heim
+WHERE Tore_Heim > Tore_Gast
+
+SELECT Name
+FROM Verein LEFT JOIN Spiel ON Verein.V_ID = Spiel.Gast
+WHERE Tore_Heim < Tore_Gast
