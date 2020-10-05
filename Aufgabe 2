@@ -41,27 +41,40 @@ GROUP BY Verein.Name
 ORDER BY COUNT(Vereins_ID) DESC;
 
 f)
-SELECT Darum, Spieltag
-FROM Spiel LEFT JOIN Verein ON Spiel.Heim = Verein.V_Id
-WHERE Verein.Liga = 1
-GROUP BY Datum
+SELECT Spiel.Datum, AVG(Spiel.Spieltag) AS MinvonSpieltag
+FROM Spiel INNER JOIN Verein ON Spiel.Heim = Verein.V_Id
+WHERE Verein.Liga=1
+GROUP BY Spiel.Datum;
+
+oder
+
+SELECT DISTINCT Spiel.Datum, Spiel.Spieltag
+FROM Spiel INNER JOIN Verein ON Spiel.Heim = Verein.V_Id
+WHERE Verein.Liga=1
 
 g)
 SELECT Spieler_Name, Spiele, Tore, Vorlagen, Name
-FROM Spieler LEFT JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
+FROM Spieler INNER JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
 WHERE Land = "Brasilien" AND Liga = 1
 
 h)
 SELECT Tore, Trikot_Nr, Name
-FROM Spieler LEFT JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
+FROM Spieler INNER JOIN Verein ON Spieler.Vereins_ID = Verein.V_ID
 WHERE Tore > 5 AND Liga = 2
 ORDER BY Tore
 
-i)
-SELECT Name
-FROM Verein LEFT JOIN Spiel ON Verein.V_ID = Spiel.Heim
-WHERE Tore_Heim > Tore_Gast
 
+i)
+SELECT Name, Tore_Heim, Tore_Gast
+FROM Verein RIGHT JOIN Spiel ON Verein.V_ID = Spiel.Heim
+WHERE ((Tore_Heim > Tore_Gast AND Gast = 7) OR (Tore_Heim < Tore_Gast AND Heim = 7)) AND V_ID <> 7
+ORDER BY Name
+
+j)
 SELECT Name
-FROM Verein LEFT JOIN Spiel ON Verein.V_ID = Spiel.Gast
-WHERE Tore_Heim < Tore_Gast
+FROM Verein RIGHT JOIN Spiel ON Verein.V_ID = Spiel.Heim
+WHERE Gast = (SELECT V_ID FROM Verein WHERE Name = "FC Schalke 04")
+
+k)
+
+
