@@ -77,5 +77,20 @@ FROM Verein RIGHT JOIN Spiel ON Verein.V_ID = Spiel.Heim
 WHERE Gast = (SELECT V_ID FROM Verein WHERE Name = "FC Schalke 04")
 
 k)
+l)
+SELECT COUNT(Spiel.Datum) AS "Gewonnene Spiele"
+FROM
+(
+SELECT Spiel.Datum
+FROM Spiel INNER JOIN Verein ON (Spiel.Heim = Verein.V_ID)
+WHERE Spiel.Tore_Heim > Spiel.Tore_Gast AND Verein.Name = "FC Bayern München"
+
+UNION
+
+SELECT Spiel.Datum
+FROM Spiel INNER JOIN Verein ON (Spiel.Gast = Verein.V_ID)
+WHERE Spiel.Tore_Gast > Spiel.Tore_Heim AND Verein.Name = "FC Bayern München"
+);
+
 
 
